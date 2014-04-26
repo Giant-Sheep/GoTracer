@@ -1,0 +1,411 @@
+{
+	"metadata": {
+		"formatVersion" : 3.2,
+		"type"		: "scene",
+		"generatedBy"	: "convert-to-threejs.py",
+		"objects"       : 9,
+		"geometries"    : 7,
+		"materials"     : 7,
+		"textures"      : 0
+	},
+
+	"urlBaseType": "relativeToScene",
+
+	"objects" :
+	{
+		"default_light" : {
+			"type"      : "DirectionalLight",
+			"color"     : 16777215,
+			"intensity" : 0.8,
+			"direction" : [ 1, 1, 1 ],
+			"target"    : ""
+		 },
+
+		"default_camera" : {
+			"type"     : "PerspectiveCamera",
+			"fov"      : 75,
+			"near"     : 0.1,
+			"far"      : 1000,
+			"position" : [ 100, 100, 100 ]
+		 },
+
+		"SketchUp" : {
+			"geometry" : "Geometry_30_SketchUp",
+			"material" : "material_1",
+			"position" : [ 0, 0, 0 ],
+			"rotation" : [ 0, -0, 0 ],
+			"scale"	   : [ 1, 1, 1 ],
+			"visible"  : true,
+			"children" : {
+
+				"ID10" : {
+					"geometry" : "Geometry_34_ID10",
+					"material" : "material",
+					"position" : [ 0, 0, 0 ],
+					"rotation" : [ 0, -0, 0 ],
+					"scale"	   : [ 1, 1, 1 ],
+					"visible"  : true
+				},
+
+				"ID18" : {
+					"geometry" : "Geometry_37_ID18",
+					"material" : "material_2",
+					"position" : [ 0, 0, 0 ],
+					"rotation" : [ 0, -0, 0 ],
+					"scale"	   : [ 1, 1, 1 ],
+					"visible"  : true
+				},
+
+				"ID26" : {
+					"geometry" : "Geometry_40_ID26",
+					"material" : "material_3",
+					"position" : [ 0, 0, 0 ],
+					"rotation" : [ 0, -0, 0 ],
+					"scale"	   : [ 1, 1, 1 ],
+					"visible"  : true
+				},
+
+				"ID34" : {
+					"geometry" : "Geometry_43_ID34",
+					"material" : "material_5",
+					"position" : [ 0, 0, 0 ],
+					"rotation" : [ 0, -0, 0 ],
+					"scale"	   : [ 1, 1, 1 ],
+					"visible"  : true
+				},
+
+				"ID42" : {
+					"geometry" : "Geometry_46_ID42",
+					"material" : "material_6",
+					"position" : [ 0, 0, 0 ],
+					"rotation" : [ 0, -0, 0 ],
+					"scale"	   : [ 1, 1, 1 ],
+					"visible"  : true
+				},
+
+				"ID50" : {
+					"geometry" : "Geometry_49_ID50",
+					"material" : "material_4",
+					"position" : [ 0, 0, 0 ],
+					"rotation" : [ 0, -0, 0 ],
+					"scale"	   : [ 1, 1, 1 ],
+					"visible"  : true
+				}
+			}
+		}
+	},
+
+	"geometries" :
+	{
+		"Geometry_30_SketchUp" : {
+			"type"  : "embedded",
+			"id" : "Embed_30_SketchUp"
+		},
+
+		"Geometry_34_ID10" : {
+			"type"  : "embedded",
+			"id" : "Embed_34_ID10"
+		},
+
+		"Geometry_37_ID18" : {
+			"type"  : "embedded",
+			"id" : "Embed_37_ID18"
+		},
+
+		"Geometry_40_ID26" : {
+			"type"  : "embedded",
+			"id" : "Embed_40_ID26"
+		},
+
+		"Geometry_43_ID34" : {
+			"type"  : "embedded",
+			"id" : "Embed_43_ID34"
+		},
+
+		"Geometry_46_ID42" : {
+			"type"  : "embedded",
+			"id" : "Embed_46_ID42"
+		},
+
+		"Geometry_49_ID50" : {
+			"type"  : "embedded",
+			"id" : "Embed_49_ID50"
+		}
+	},
+
+	"materials" :
+	{
+		"material_1": {
+			"type"    : "MeshLambertMaterial",
+			"parameters"  : {
+				"color"  : 16711694,
+				"ambient"  : 3355443,
+				"emissive"  : 0,
+				"reflectivity"  : 1,
+				"transparent" : false,
+				"opacity" : 1.0,
+				"wireframe" : false,
+				"wireframeLinewidth" : 1
+			}
+		},
+
+		"material": {
+			"type"    : "MeshLambertMaterial",
+			"parameters"  : {
+				"color"  : 16777215,
+				"ambient"  : 3355443,
+				"emissive"  : 0,
+				"reflectivity"  : 1,
+				"transparent" : false,
+				"opacity" : 1.0,
+				"wireframe" : false,
+				"wireframeLinewidth" : 1
+			}
+		},
+
+		"material_2": {
+			"type"    : "MeshLambertMaterial",
+			"parameters"  : {
+				"color"  : 16771608,
+				"ambient"  : 3355443,
+				"emissive"  : 0,
+				"reflectivity"  : 1,
+				"transparent" : false,
+				"opacity" : 1.0,
+				"wireframe" : false,
+				"wireframeLinewidth" : 1
+			}
+		},
+
+		"material_3": {
+			"type"    : "MeshLambertMaterial",
+			"parameters"  : {
+				"color"  : 3806463,
+				"ambient"  : 3355443,
+				"emissive"  : 0,
+				"reflectivity"  : 1,
+				"transparent" : false,
+				"opacity" : 1.0,
+				"wireframe" : false,
+				"wireframeLinewidth" : 1
+			}
+		},
+
+		"material_5": {
+			"type"    : "MeshLambertMaterial",
+			"parameters"  : {
+				"color"  : 16715491,
+				"ambient"  : 3355443,
+				"emissive"  : 0,
+				"reflectivity"  : 1,
+				"transparent" : false,
+				"opacity" : 1.0,
+				"wireframe" : false,
+				"wireframeLinewidth" : 1
+			}
+		},
+
+		"material_6": {
+			"type"    : "MeshLambertMaterial",
+			"parameters"  : {
+				"color"  : 16748042,
+				"ambient"  : 3355443,
+				"emissive"  : 0,
+				"reflectivity"  : 1,
+				"transparent" : false,
+				"opacity" : 1.0,
+				"wireframe" : false,
+				"wireframeLinewidth" : 1
+			}
+		},
+
+		"material_4": {
+			"type"    : "MeshLambertMaterial",
+			"parameters"  : {
+				"color"  : 2424600,
+				"ambient"  : 3355443,
+				"emissive"  : 0,
+				"reflectivity"  : 1,
+				"transparent" : false,
+				"opacity" : 1.0,
+				"wireframe" : false,
+				"wireframeLinewidth" : 1
+			}
+		}
+	},
+
+	"textures" :
+	{
+	
+	},
+
+	"embeds" :
+	{
+		"Embed_30_SketchUp" : {
+			"metadata"  : {
+				"vertices" : 6,
+				"normals" : 1,
+				"colors" : 0,
+				"faces" : 4,
+				"uvs" : [  ]
+			},
+			"boundingBox"  : {
+				"min" : [ -52.6461033,-37.9055455,0 ],
+				"max" : [ 40.2308197,63.0910464,27.2337636 ]
+			},
+			"scale" : 1,
+			"materials" : [  ],
+			"vertices" : [ -47.2348,-17.3427,27.2338,-11.619,63.091,27.2338,-52.6461,33.1556,27.2338,-0.796333,-37.9055,27.2338,34.8195,42.5282,27.2338,40.2308,-7.97007,27.2338 ],
+			"normals" : [ 0,0,1 ],
+			"colors" : [  ],
+			"uvs" : [  ],
+			"faces" : [ 34,0,1,2,0,0,0,0,34,1,0,3,0,0,0,0,34,1,3,4,0,0,0,0,34,4,3,5,0,0,0,0 ]
+		},
+
+		"Embed_34_ID10" : {
+			"metadata"  : {
+				"vertices" : 12,
+				"normals" : 7,
+				"colors" : 0,
+				"faces" : 6,
+				"uvs" : [  ]
+			},
+			"boundingBox"  : {
+				"min" : [ -46.1097459,-50.5770633,0 ],
+				"max" : [ 46.1097459,63.0910464,27.2337636 ]
+			},
+			"scale" : 1,
+			"materials" : [  ],
+			"vertices" : [ -4.61745,50.5771,0,-41.4923,-29.2874,0,-46.1097,21.2897,0,4.61745,-50.5771,0,41.4923,29.2874,0,46.1097,-21.2897,0,34.8195,42.5282,27.2338,-46.1097,21.2897,0,-41.4923,-29.2874,0,34.8195,42.5282,27.2338,-41.4923,-29.2874,0,-11.619,63.091,27.2338 ],
+			"normals" : [ 0,0,-1,0.027127,-0.379521,0.924785,-0.312085,-0.028492,0.949627,-0.485174,0.192052,0.853067,-0.027127,0.379521,-0.924785,0.485174,-0.192052,-0.853067,0.109901,0.248198,-0.962455 ],
+			"colors" : [  ],
+			"uvs" : [  ],
+			"faces" : [ 34,0,1,2,0,0,0,0,34,1,0,3,0,0,0,0,34,3,0,4,0,0,0,0,34,3,4,5,0,0,0,0,34,6,7,8,0,1,2,3,34,9,10,11,0,4,5,6 ]
+		},
+
+		"Embed_37_ID18" : {
+			"metadata"  : {
+				"vertices" : 6,
+				"normals" : 6,
+				"colors" : 0,
+				"faces" : 2,
+				"uvs" : [  ]
+			},
+			"boundingBox"  : {
+				"min" : [ -47.2347946,-37.9055455,0 ],
+				"max" : [ 46.1097459,29.2873593,27.2337636 ]
+			},
+			"scale" : 1,
+			"materials" : [  ],
+			"vertices" : [ 46.1097,-21.2897,0,41.4923,29.2874,0,-47.2348,-17.3427,27.2338,41.4923,29.2874,0,-0.796333,-37.9055,27.2338,-47.2348,-17.3427,27.2338 ],
+			"normals" : [ 0.280986,0.025653,0.959369,0.368032,-0.165959,0.914883,-0.04057,0.560349,0.827262,-0.368032,0.165959,-0.914883,-0.132613,-0.299489,-0.944839,0.04057,-0.560349,-0.827262 ],
+			"colors" : [  ],
+			"uvs" : [  ],
+			"faces" : [ 34,0,1,2,0,0,1,2,34,3,4,5,0,3,4,5 ]
+		},
+
+		"Embed_40_ID26" : {
+			"metadata"  : {
+				"vertices" : 6,
+				"normals" : 6,
+				"colors" : 0,
+				"faces" : 2,
+				"uvs" : [  ]
+			},
+			"boundingBox"  : {
+				"min" : [ -52.6461033,-50.5770633,0 ],
+				"max" : [ 46.1097459,33.1555676,27.2337636 ]
+			},
+			"scale" : 1,
+			"materials" : [  ],
+			"vertices" : [ 46.1097,-21.2897,0,-47.2348,-17.3427,27.2338,4.61745,-50.5771,0,4.61745,-50.5771,0,-47.2348,-17.3427,27.2338,-52.6461,33.1556,27.2338 ],
+			"normals" : [ 0.248415,-0.351938,0.902458,0.54113,0.169271,0.823727,0.176665,-0.444142,0.878366,-0.176665,0.444142,-0.878366,-0.54113,-0.169271,-0.823727,-0.490543,-0.052566,-0.86983 ],
+			"colors" : [  ],
+			"uvs" : [  ],
+			"faces" : [ 34,0,1,2,0,0,1,2,34,3,4,5,0,3,4,5 ]
+		},
+
+		"Embed_43_ID34" : {
+			"metadata"  : {
+				"vertices" : 6,
+				"normals" : 6,
+				"colors" : 0,
+				"faces" : 2,
+				"uvs" : [  ]
+			},
+			"boundingBox"  : {
+				"min" : [ -4.6174484,-37.9055455,0 ],
+				"max" : [ 41.4922974,50.5770633,27.2337636 ]
+			},
+			"scale" : 1,
+			"materials" : [  ],
+			"vertices" : [ 41.4923,29.2874,0,-4.61745,50.5771,0,40.2308,-7.97007,27.2338,41.4923,29.2874,0,40.2308,-7.97007,27.2338,-0.796333,-37.9055,27.2338 ],
+			"normals" : [ 0.475978,0.508423,0.717601,0.260407,0.563996,0.783643,-0.619983,0.476589,0.623285,-0.475978,-0.508423,-0.717601,0.619983,-0.476589,-0.623285,0.400892,-0.54943,-0.733084 ],
+			"colors" : [  ],
+			"uvs" : [  ],
+			"faces" : [ 34,0,1,2,0,0,1,2,34,3,4,5,0,3,4,5 ]
+		},
+
+		"Embed_46_ID42" : {
+			"metadata"  : {
+				"vertices" : 6,
+				"normals" : 6,
+				"colors" : 0,
+				"faces" : 2,
+				"uvs" : [  ]
+			},
+			"boundingBox"  : {
+				"min" : [ -46.1097459,-7.9700667,0 ],
+				"max" : [ 40.2308197,50.5770633,27.2337636 ]
+			},
+			"scale" : 1,
+			"materials" : [  ],
+			"vertices" : [ 34.8195,42.5282,27.2338,-4.61745,50.5771,0,-46.1097,21.2897,0,40.2308,-7.97007,27.2338,-4.61745,50.5771,0,34.8195,42.5282,27.2338 ],
+			"normals" : [ -0.583969,-0.264652,0.767424,-0.27436,0.738734,0.615629,-0.392472,0.556027,0.732666,0.575652,0.061686,-0.815365,0.27436,-0.738734,-0.615629,0.583969,0.264652,-0.767424 ],
+			"colors" : [  ],
+			"uvs" : [  ],
+			"faces" : [ 34,0,1,2,0,0,1,2,34,3,4,5,0,3,4,5 ]
+		},
+
+		"Embed_49_ID50" : {
+			"metadata"  : {
+				"vertices" : 6,
+				"normals" : 6,
+				"colors" : 0,
+				"faces" : 2,
+				"uvs" : [  ]
+			},
+			"boundingBox"  : {
+				"min" : [ -52.6461033,-50.5770633,0 ],
+				"max" : [ 4.6174484,63.0910464,27.2337636 ]
+			},
+			"scale" : 1,
+			"materials" : [  ],
+			"vertices" : [ 4.61745,-50.5771,0,-52.6461,33.1556,27.2338,-41.4923,-29.2874,0,-11.619,63.091,27.2338,-41.4923,-29.2874,0,-52.6461,33.1556,27.2338 ],
+			"normals" : [ -0.194437,-0.421115,0.885921,0.363061,-0.317247,0.876094,-0.313098,-0.426106,0.848766,-0.254044,0.348172,-0.902351,0.313098,0.426106,-0.848766,-0.363061,0.317247,-0.876094 ],
+			"colors" : [  ],
+			"uvs" : [  ],
+			"faces" : [ 34,0,1,2,0,0,1,2,34,3,4,5,0,3,4,5 ]
+		}
+	},
+
+	"fogs" :
+	{
+	
+	},
+
+	"transform" :
+	{
+		"position"  : [ 0, 0, 0 ],
+		"rotation"  : [ 0, 0, 0 ],
+		"scale"     : [ 1, 1, 1 ]
+	},
+
+	"defaults" :
+	{
+		"bgcolor" : [ 0.667, 0.667, 0.667 ],
+		"bgalpha" : 1,
+		"camera"  : "default_camera",
+		"fog"  	  : ""
+	}
+}
