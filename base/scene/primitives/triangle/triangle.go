@@ -5,5 +5,6 @@ import (
 )
 
 type Triangle struct {
+	Normals  [3]*vertex.Normal
 	Vertices [3]*vertex.Vertex
 }

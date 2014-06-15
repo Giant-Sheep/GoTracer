@@ -32,7 +32,7 @@ var (
 
 func init() {
 	fmt.Println("Initialising program")
-	world = new(scene.Scene)
+	world = scene.NewScene()
 }
 
 func draw() {
