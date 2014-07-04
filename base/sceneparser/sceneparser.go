@@ -4,12 +4,14 @@ import (
 	"encoding/json"
 	"gotracer/base/quaternion"
 	"gotracer/base/scene"
+	"gotracer/base/scene/objects"
 	"gotracer/base/scene/primitives/triangle"
 	"gotracer/base/scene/primitives/vertex"
 	"gotracer/base/util"
 	"gotracer/base/vector"
 	"io/ioutil"
 	"log"
+	"math"
 	"strings"
 )
 
@@ -26,13 +28,18 @@ func parseMetadata(world *scene.Scene, metadata map[string]interface{}) {
 	world.Info.Textures = int32(metadata["textures"].(float64))
 }
 
-func parsePhysicalObjects(world *scene.Scene, jsondata, objects map[string]interface{}) (retList []scene.Object) {
-	retList = make([]scene.Object, 0, 50)
-	for k, v := range objects {
-		object := scene.NewObject()
+func parsePhysicalObjects(world *scene.Scene, jsondata, items map[string]interface{}) (retList []objects.Object) {
+	retList = make([]objects.Object, 0, 50)
+	for k, v := range items {
+		object := objects.NewObject()
 		object.ID = k
-		object.Geometry = parseGeometry(world, jsondata, v.(map[string]interface{})["geometry"].(string))
-		object.Material = parseMaterial(world, jsondata, v.(map[string]interface{})["material"].(string))
+		if v.(map[string]interface{})["geometry"] != nil {
+			object.Geometry = parseGeometry(world, jsondata, v.(map[string]interface{})["geometry"].(string))
+		}
+
+		if v.(map[string]interface{})["material"] != nil {
+			object.Material = parseMaterial(world, jsondata, v.(map[string]interface{})["material"].(string))
+		}
 
 		object.Position.X = float32(v.(map[string]interface{})["position"].([]interface{})[0].(float64))
 		object.Position.Y = float32(v.(map[string]interface{})["position"].([]interface{})[1].(float64))
@@ -54,21 +61,27 @@ func parsePhysicalObjects(world *scene.Scene, jsondata, objects map[string]inter
 }
 
 func parseObjects(world *scene.Scene, jsondata map[string]interface{}) {
-	objects := jsondata["objects"].(map[string]interface{})
+	items := jsondata["objects"].(map[string]interface{})
 	log.Println("Parsing Json Objects")
-	for k, v := range objects {
+	for k, v := range items {
 		if strings.Contains(k, "camera") {
 			val := v.(map[string]interface{})
 			world.Camera.Type = val["type"].(string)
-			world.Camera.FOV = float32(val["fov"].(float64))
+			world.Camera.FOV = float32(val["fov"].(float64) * (2 * math.Pi / 360))
 			world.Camera.Near = float32(val["near"].(float64))
 			world.Camera.Far = float32(val["far"].(float64))
-			world.Camera.Position.X = float32(val["position"].([]interface{})[0].(float64))
-			world.Camera.Position.Y = float32(val["position"].([]interface{})[1].(float64))
-			world.Camera.Position.Z = float32(val["position"].([]interface{})[2].(float64))
-			delete(objects, k)
+			// world.Camera.Position.X = float32(val["position"].([]interface{})[0].(float64))
+			// world.Camera.Position.Y = float32(val["position"].([]interface{})[1].(float64))
+			// world.Camera.Position.Z = float32(val["position"].([]interface{})[2].(float64))
+			// Let's override the camera position and put it in a sensible position
+			world.Camera.Position.X = 0
+			world.Camera.Position.Y = 0
+			world.Camera.Position.Z = float32((-1) * (800 / math.Tan((float64(world.Camera.FOV) / 2))))
+			world.Camera.Position.W = 1
+			world.Camera.Rotation = quaternion.Quaternion{X: 0, Y: 0, Z: 0, W: 1}
+			delete(items, k)
 		} else if strings.Contains(k, "light") {
-			var light scene.Light
+			var light objects.Light
 			val := v.(map[string]interface{})
 			light.Type = val["type"].(string)
 			light.Colour = util.Uint32toVec3ui8(uint32(val["color"].(float64)))
@@ -78,37 +91,50 @@ func parseObjects(world *scene.Scene, jsondata map[string]interface{}) {
 			light.Direction.Z = float32(val["direction"].([]interface{})[2].(float64))
 			light.Target = val["target"].(string)
 			world.Lights = append(world.Lights, light)
-			delete(objects, k)
+			delete(items, k)
 		}
 	}
 	world.Objects = append(world.Objects, parsePhysicalObjects(world, jsondata, jsondata["objects"].(map[string]interface{}))...)
 }
 
-func parseMaterial(world *scene.Scene, jsondata map[string]interface{}, material_id string) (material *scene.Material) {
+func parseMaterial(world *scene.Scene, jsondata map[string]interface{}, material_id string) (material *objects.Material) {
 	log.Println("Parsing Json Material")
 	materialdata := jsondata["materials"].(map[string]interface{})[material_id].(map[string]interface{})
-	material = new(scene.Material)
+	material = new(objects.Material)
 
 	material.ID = material_id
 	material.Type = materialdata["type"].(string)
-	material.Color = util.Uint32toVec3ui8(uint32(materialdata["parameters"].(map[string]interface{})["color"].(float64)))
-	material.Ambient = util.Uint32toVec3ui8(uint32(materialdata["parameters"].(map[string]interface{})["ambient"].(float64)))
-	material.Emissive = util.Uint32toVec3ui8(uint32(materialdata["parameters"].(map[string]interface{})["emissive"].(float64)))
-	material.Transparent = materialdata["parameters"].(map[string]interface{})["transparent"].(bool)
-	material.Reflectivity = float32(materialdata["parameters"].(map[string]interface{})["reflectivity"].(float64))
-	material.Opacity = float32(materialdata["parameters"].(map[string]interface{})["opacity"].(float64))
-	material.Wireframe = materialdata["parameters"].(map[string]interface{})["wireframe"].(bool)
-	material.WireframeLinewidth = int32(materialdata["parameters"].(map[string]interface{})["wireframeLinewidth"].(float64))
+
+	if materialdata["parameters"].(map[string]interface{})["materials"] == nil {
+		material.Color = util.Uint32toVec3ui8(uint32(materialdata["parameters"].(map[string]interface{})["color"].(float64)))
+		material.Ambient = util.Uint32toVec3ui8(uint32(materialdata["parameters"].(map[string]interface{})["ambient"].(float64)))
+		material.Emissive = util.Uint32toVec3ui8(uint32(materialdata["parameters"].(map[string]interface{})["emissive"].(float64)))
+		material.Transparent = materialdata["parameters"].(map[string]interface{})["transparent"].(bool)
+		material.Reflectivity = float32(materialdata["parameters"].(map[string]interface{})["reflectivity"].(float64))
+		material.Opacity = float32(materialdata["parameters"].(map[string]interface{})["opacity"].(float64))
+		material.Wireframe = materialdata["parameters"].(map[string]interface{})["wireframe"].(bool)
+		material.WireframeLinewidth = int32(materialdata["parameters"].(map[string]interface{})["wireframeLinewidth"].(float64))
+	} else {
+		materials := materialdata["parameters"].(map[string]interface{})["materials"].([]interface{})
+		for _, v := range materials {
+			id := v.(string)
+			if world.HasMaterial(id) {
+				material.Materials = append(material.Materials, world.GetMaterial(id))
+			} else {
+				material.Materials = append(material.Materials, parseMaterial(world, jsondata, id))
+			}
+		}
+	}
 
 	return
 }
 
-func parseGeometry(world *scene.Scene, jsondata map[string]interface{}, geometry_id string) (geometry *scene.Geometry) {
+func parseGeometry(world *scene.Scene, jsondata map[string]interface{}, geometry_id string) (geometry *objects.Geometry) {
 	log.Println("Parsing Json Geometry")
 	embeds := jsondata["embeds"].(map[string]interface{})
 	geometrydata := jsondata["geometries"].(map[string]interface{})[geometry_id].(map[string]interface{})
 
-	geometry = new(scene.Geometry)
+	geometry = new(objects.Geometry)
 	geometry.ID = geometry_id
 	if geometrydata["type"].(string) == "embedded" {
 		embed := embeds[geometrydata["id"].(string)].(map[string]interface{})
@@ -210,7 +236,6 @@ func parseScene(world *scene.Scene, jsondata map[string]interface{}) (successful
 	log.Println("Parsing Json Scene")
 	parseMetadata(world, jsondata["metadata"].(map[string]interface{}))
 	parseObjects(world, jsondata)
-	log.Println(world)
 	return
 }
 
